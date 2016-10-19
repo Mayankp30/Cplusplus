@@ -27,14 +27,29 @@ void decrement(){
 
 Node* head;
 
-void insert(int x){
-	Node* temp=new Node();
-	temp->data=x;
-	temp->next=head;
-	head=temp;
-	increment();
-
+// only for the 1st Node
+void initNode(Node *head,int n){
+	head->data = n;
+	head->next =NULL;
 }
+
+
+// apending
+void addNode(struct Node *head, int n) {
+	Node *newNode = new Node;
+	newNode->data = n;
+	newNode->next = NULL;
+
+	Node *cur = head;
+	while(cur) {
+		if(cur->next == NULL) {
+			cur->next = newNode;
+			return;
+		}
+		cur = cur->next;
+	}
+}
+
 
 void print(){
 	Node* temp=head;
@@ -45,17 +60,12 @@ void print(){
 	}
 	cout<<endl;
 }
+
 int main(int argc, char const *argv[])
 {
-	head=NULL;
+	Node *newHead;
+	Node *head = new Node;
 	
-	insert(5);
-	insert(2);
-	insert(1);
-
-
-	print();
-	cout<<size()<<endl;
-	return 0;
+	initNode(head,10);
 }
 
