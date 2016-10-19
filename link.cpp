@@ -51,18 +51,7 @@ void addNode(struct Node *head, int n) {
 }
 
 
-
-void print(){
-	Node* temp=head;
-	cout<<"List is: ";
-	while(temp!=NULL){
-		cout<<temp->data<<" ";
-		temp=temp->next;
-	}
-	cout<<endl;
-}
-
-
+// display
 void display(struct Node *head) {
 	Node *list = head;
 	while(list) {
@@ -77,7 +66,11 @@ int main(int argc, char const *argv[])
 {
 	Node *newHead;
 	Node *head = new Node;
+
 	
 	initNode(head,10);
+	addNode(head,20);
+	addNode(head,25);
+	display(head);
 }
 
