@@ -2,30 +2,9 @@
 using namespace std;
 
 struct Node{
-
 	int data;
 	Node* next;
 };
-
-static int counter;
-
-int getCounter(){
-	return counter;
-}
-
-int size(){
-	return getCounter();
-}
-
-void increment(){
-	counter++;
-}
-
-void decrement(){
-	counter--;
-}
-
-Node* head;
 
 // only for the 1st Node
 void initNode(Node *head,int n){
@@ -33,15 +12,14 @@ void initNode(Node *head,int n){
 	head->next =NULL;
 }
 
-
 // apending
-void addNode(struct Node *head, int n) {
+void addNode(Node *head, int n) {
 	Node *newNode = new Node;
 	newNode->data = n;
 	newNode->next = NULL;
 
 	Node *cur = head;
-	while(cur) {
+	while(cur!=NULL) {
 		if(cur->next == NULL) {
 			cur->next = newNode;
 			return;
@@ -50,15 +28,46 @@ void addNode(struct Node *head, int n) {
 	}
 }
 
+// search for any specific node
+Node *searchNode(Node *head, int n) {
+	Node *cur = head;
+	while(cur!=NULL) {
+		if(cur->data == n){
+			return cur;
+		}
+		cur = cur->next;
+	}
+	cout << "No Node " << n << " in list.\n";
+}
+
+// delete node
+bool deleteNode(Node **head, Node *ptrDel) {
+	Node *cur = *head;
+	if(ptrDel == *head) {
+		*head = cur->next;
+		delete ptrDel;
+		return true;
+	}
+	
+	while(cur) {
+		if(cur->next == ptrDel) {
+			cur->next = ptrDel->next;
+			delete ptrDel;
+			return true;
+		}
+		cur = cur->next;
+	}
+	return false;
+}
+
 
 // display
 void display(struct Node *head) {
 	Node *list = head;
-	while(list) {
+	while(list!=NULL) {
 		cout << list->data << " ";
 		list = list->next;
 	}
-	cout << endl;
 	cout << endl;
 }
 
@@ -71,6 +80,14 @@ int main(int argc, char const *argv[])
 	initNode(head,10);
 	addNode(head,20);
 	addNode(head,25);
+	addNode(head,30);
 	display(head);
+
+	int numDel = 5;
+	Node *ptrDelete = searchNode(head,numDel);
+	if(deleteNode(&head,ptrDelete)) 
+		cout << "Node "<< numDel << " deleted!\n";
+	display(head);
+
 }
 
