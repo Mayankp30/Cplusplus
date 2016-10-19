@@ -51,6 +51,7 @@ void addNode(struct Node *head, int n) {
 }
 
 
+
 void print(){
 	Node* temp=head;
 	cout<<"List is: ";
@@ -59,6 +60,17 @@ void print(){
 		temp=temp->next;
 	}
 	cout<<endl;
+}
+
+
+void display(struct Node *head) {
+	Node *list = head;
+	while(list) {
+		cout << list->data << " ";
+		list = list->next;
+	}
+	cout << endl;
+	cout << endl;
 }
 
 int main(int argc, char const *argv[])
